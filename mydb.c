@@ -333,7 +333,7 @@ static int getlut(LUTENT *lut, char *val)
 **/
 static char* getstr(LUTENT *lut, int val)
 {
-   while(lut->name){if(lut->val==val) return lut->name; lut++;}
+   while(lut->name){if(lut->val==val) return (char *)lut->name; lut++;}
    fprintf(stderr, "Bad value specified (%d)\n", val);
    exit(1);
 }
@@ -357,7 +357,7 @@ static int getval(char *type, char *val)
       exit(1);
    }
 }
-static char unparse(SFILE *sfile)
+static void unparse(SFILE *sfile)
 {
 int i, val;
 
@@ -500,7 +500,7 @@ char *var;
          fprintf(stderr, "\nWarning : untreated atribute %s file %s\n", var, sfile->fname);
          while((pt=strtok(NULL, ")")) && pt[strlen(pt)-1]==':');
       }
-   } while(var=strtok(NULL, " \t(\n")); return 1;
+   } while((var=strtok(NULL, " \t(\n"))); return 1;
 }
 /**
    This function will read in the content of a IDB file and set
@@ -647,7 +647,7 @@ static int matchexpr(int nmatch, int *matches)
 #define IOBSIZ 10240
 static int dodecomp=1;
 
-static int extract(SFILE *sfile)
+static void extract(SFILE *sfile)
 {
 char *buf;
 int fh=TOSUB(sfile)->fh;
