@@ -708,7 +708,7 @@ int fh=TOSUB(sfile)->fh;
       close(hout);
       if(dodecomp)
       {
-         sprintf(cmd, "/usr/bsd/uncompress %s", name);
+         sprintf(cmd, "/bin/uncompress %s", name);
          if(system(cmd)!=0)
          {
             fprintf(stderr, "Error decompressing file : %s!\n",strerror(errno));
