@@ -683,7 +683,7 @@ int fh=TOSUB(sfile)->fh;
    char name[MAXPATH], cmd[100+MAXPATH];
 
       sprintf(name, "%s.Z", sfile->fname);
-      if(!(hout=open(name, O_WRONLY+O_CREAT+O_TRUNC, sfile->mode)) < 0)
+      if((hout=open(name, O_WRONLY+O_CREAT+O_TRUNC, sfile->mode)) < 0)
       {
          fprintf(stderr, "Can't creat/open file (%s): %s\n", name, strerror(errno));
          exit(1);
